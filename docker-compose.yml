@@ -1,0 +1,164 @@
+version: '3.8'
+
+networks:
+  vrp-network:
+    driver: bridge
+
+services:
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - vrp-network
+    depends_on:
+      - auth-service
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-auth:5432/auth_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - vrp-network
+    depends_on:
+      - postgres-auth
+
+  commande-service:
+    build: ./commande-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-commande:5432/commande_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - vrp-network
+    depends_on:
+      - postgres-commande
+
+  livraison-service:
+    build: ./livraison-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-livraison:5432/livraison_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - vrp-network
+    depends_on:
+      - postgres-livraison
+
+  vrp-service:
+    build: ./vrp-service
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-vrp:5432/vrp_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - vrp-network
+    depends_on:
+      - postgres-vrp
+
+  tracking-service:
+    build: ./tracking-service
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-tracking:5432/tracking_db
+    networks:
+      - vrp-network
+    depends_on:
+      - redis
+      - postgres-tracking
+
+  notification-service:
+    build: ./notification-service
+    ports:
+      - "8086:8086"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-notif:5432/notif_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - vrp-network
+    depends_on:
+      - postgres-notif
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - vrp-network
+
+  # ── BASES DE DONNÉES ──
+  postgres-auth:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: auth_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - vrp-network
+
+  postgres-commande:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: commande_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - vrp-network
+
+  postgres-livraison:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: livraison_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - vrp-network
+
+  postgres-vrp:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: vrp_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - vrp-network
+
+  postgres-tracking:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: tracking_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - vrp-network
+
+  postgres-notif:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: notif_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - vrp-network
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    networks:
+      - vrp-network
