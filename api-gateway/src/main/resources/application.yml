@@ -1,0 +1,4 @@
+spring:
+  cloud:
+    gateway:
+      routes: [ { id: admin, uri: lb://ADMIN, predicates: [ Path=/products/** ] } ]
