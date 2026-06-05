@@ -1,0 +1,125 @@
+{
+  "realm": "vrp",
+  "enabled": true,
+  "displayName": "VRP Platform",
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "maxFailureWaitSeconds": 900,
+  "minimumQuickLoginWaitSeconds": 60,
+  "waitIncrementSeconds": 60,
+  "quickLoginCheckMilliSeconds": 1000,
+  "maxDeltaTimeSeconds": 43200,
+  "failureFactor": 5,
+
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 86400,
+  "ssoSessionMaxLifespan": 604800,
+
+  "roles": {
+    "realm": [
+      { "name": "ADMIN",      "description": "Accès complet à la plateforme" },
+      { "name": "DISPATCHER", "description": "Gestion des routes, véhicules et flotte" },
+      { "name": "DRIVER",     "description": "Chauffeur — consulte sa tournée, confirme les livraisons" },
+      { "name": "USER",       "description": "Client épicier — passe des commandes, suit les livraisons" }
+    ]
+  },
+
+  "clients": [
+    {
+      "clientId": "vrp-frontend",
+      "name": "VRP Frontend (SPA)",
+      "description": "Application React — utilise Authorization Code Flow + PKCE",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      },
+      "redirectUris": [
+        "http://localhost:3000/*",
+        "http://localhost:3000/callback",
+        "https://vrp.yourdomain.com/*"
+      ],
+      "webOrigins": [
+        "http://localhost:3000",
+        "https://vrp.yourdomain.com"
+      ]
+    },
+    {
+      "clientId": "auth-service",
+      "name": "Auth Service Backend",
+      "description": "Utilisé uniquement pour l'Admin API Keycloak (register, gestion utilisateurs)",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "auth-service-secret-change-in-prod",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "protocol": "openid-connect"
+    },
+    {
+      "clientId": "api-gateway",
+      "name": "API Gateway",
+      "description": "Valide les JWT via JWKS et route vers les microservices",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "gateway-secret-change-in-prod",
+      "standardFlowEnabled": false,
+      "serviceAccountsEnabled": true,
+      "protocol": "openid-connect"
+    }
+  ],
+
+  "users": [
+    {
+      "username": "admin-vrp",
+      "email": "admin@vrp.com",
+      "firstName": "Admin",
+      "lastName": "VRP",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "Admin@VRP2024!", "temporary": false }],
+      "realmRoles": ["ADMIN"]
+    },
+    {
+      "username": "dispatcher1",
+      "email": "dispatcher1@vrp.com",
+      "firstName": "Sophie",
+      "lastName": "Laurent",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "Dispatcher@2024!", "temporary": false }],
+      "realmRoles": ["DISPATCHER"]
+    },
+    {
+      "username": "driver1",
+      "email": "driver1@vrp.com",
+      "firstName": "Jean",
+      "lastName": "Dupont",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "Driver@2024!", "temporary": false }],
+      "realmRoles": ["DRIVER"]
+    },
+    {
+      "username": "client1",
+      "email": "epicier1@vrp.com",
+      "firstName": "Marie",
+      "lastName": "Martin",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "Client@2024!", "temporary": false }],
+      "realmRoles": ["USER"]
+    }
+  ]
+}
