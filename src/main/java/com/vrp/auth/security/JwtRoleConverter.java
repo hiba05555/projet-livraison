@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Component
 public class JwtRoleConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
 
-    private static final String[] VRP_ROLES = {"ADMIN", "DISPATCHER", "DRIVER", "USER"};
+    private static final String[] VRP_ROLES = {"ADMIN", "DRIVER", "USER"};
 
     @Override
     @SuppressWarnings("unchecked")

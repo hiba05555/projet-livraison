@@ -19,10 +19,9 @@ public final class SecurityConstants {
     public static final String CLAIM_JTI            = "jti";
 
     // ── Rôles VRP ─────────────────────────────────────────────────────────
-    public static final String ROLE_ADMIN      = "ADMIN";
-    public static final String ROLE_DISPATCHER = "DISPATCHER";
-    public static final String ROLE_DRIVER     = "DRIVER";
-    public static final String ROLE_USER       = "USER";
+    public static final String ROLE_ADMIN  = "ADMIN";
+    public static final String ROLE_DRIVER = "DRIVER";
+    public static final String ROLE_USER   = "USER";
 
     // Spring Security exige le préfixe ROLE_ pour hasRole()
     public static final String SPRING_ROLE_PREFIX = "ROLE_";

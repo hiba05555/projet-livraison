@@ -38,7 +38,7 @@ public class RegisterRequest {
 
     /**
      * Requested role. Defaults to USER.
-     * Only ADMIN can assign ADMIN or DISPATCHER roles.
+     * Only ADMIN can assign the ADMIN role.
      */
     private UserRole role = UserRole.USER;
 }

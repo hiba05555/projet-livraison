@@ -51,7 +51,7 @@ public class AuthController {
         summary     = "Créer un compte utilisateur",
         description = "Crée l'utilisateur dans Keycloak via Admin API et un profil local en base. " +
                       "Rôles autorisés en self-service : USER et DRIVER uniquement. " +
-                      "ADMIN et DISPATCHER sont bloqués et forcés à USER."
+                      "ADMIN est bloqué et forcé à USER."
     )
     @RequestBody(
         required = true,

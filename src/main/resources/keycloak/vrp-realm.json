@@ -23,10 +23,9 @@
 
   "roles": {
     "realm": [
-      { "name": "ADMIN",      "description": "Accès complet à la plateforme" },
-      { "name": "DISPATCHER", "description": "Gestion des routes, véhicules et flotte" },
-      { "name": "DRIVER",     "description": "Chauffeur — consulte sa tournée, confirme les livraisons" },
-      { "name": "USER",       "description": "Client épicier — passe des commandes, suit les livraisons" }
+      { "name": "ADMIN",  "description": "Accès complet à la plateforme" },
+      { "name": "DRIVER", "description": "Chauffeur — consulte sa tournée, confirme les livraisons" },
+      { "name": "USER",   "description": "Client épicier — passe des commandes, suit les livraisons" }
     ]
   },
 
@@ -90,16 +89,6 @@
       "emailVerified": true,
       "credentials": [{ "type": "password", "value": "Admin@VRP2024!", "temporary": false }],
       "realmRoles": ["ADMIN"]
-    },
-    {
-      "username": "dispatcher1",
-      "email": "dispatcher1@vrp.com",
-      "firstName": "Sophie",
-      "lastName": "Laurent",
-      "enabled": true,
-      "emailVerified": true,
-      "credentials": [{ "type": "password", "value": "Dispatcher@2024!", "temporary": false }],
-      "realmRoles": ["DISPATCHER"]
     },
     {
       "username": "driver1",

@@ -1,18 +1,16 @@
 package com.vrp.auth.entity;
 
 /**
- * VRP platform user roles aligned with Keycloak realm roles.
+ * Rôles de la plateforme VRP alignés avec les rôles realm Keycloak.
  *
  * <ul>
- *   <li>ADMIN      – full platform access (enterprise admin)</li>
- *   <li>DISPATCHER – manages routes, vehicles, and fleet operations</li>
- *   <li>DRIVER     – delivery driver; views itinerary, validates deliveries</li>
- *   <li>USER       – grocery store client (épicier); places orders, tracks parcels</li>
+ *   <li>ADMIN  – accès complet (admin entreprise)</li>
+ *   <li>DRIVER – chauffeur livreur</li>
+ *   <li>USER   – client épicier</li>
  * </ul>
  */
 public enum UserRole {
     ADMIN,
-    DISPATCHER,
     DRIVER,
     USER
 }

@@ -17,7 +17,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * <p>Responsibilities:
  * <ul>
  *   <li>User registration &amp; onboarding (creates users in Keycloak + local profile)</li>
- *   <li>Role management (ADMIN / DISPATCHER / DRIVER / USER)</li>
+ *   <li>Role management (ADMIN / DRIVER / USER)</li>
  *   <li>Stateless JWT validation via Spring OAuth2 Resource Server (RS256 + JWKS)</li>
  *   <li>Secure logout via Redis token blacklist</li>
  *   <li>Audit logging of all auth events</li>

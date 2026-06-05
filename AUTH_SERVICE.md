@@ -363,6 +363,5 @@ open http://localhost:8081/swagger-ui.html
 | Username | Email | Mot de passe | Rôle |
 |---|---|---|---|
 | `admin-vrp` | `admin@vrp.com` | `Admin@VRP2024!` | ADMIN |
-| `dispatcher1` | `dispatcher1@vrp.com` | `Dispatcher@2024!` | DISPATCHER |
 | `driver1` | `driver1@vrp.com` | `Driver@2024!` | DRIVER |
 | `client1` | `epicier1@vrp.com` | `Client@2024!` | USER |

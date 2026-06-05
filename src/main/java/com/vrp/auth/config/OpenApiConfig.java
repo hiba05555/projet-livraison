@@ -27,7 +27,6 @@ import java.util.List;
  *
  * Comptes de test :
  *  ADMIN      : admin-vrp / Admin@VRP2024!
- *  DISPATCHER : dispatcher1 / Dispatcher@2024!
  *  DRIVER     : driver1 / Driver@2024!
  *  USER       : client1 / Client@2024!
  */
@@ -86,7 +85,6 @@ public class OpenApiConfig {
                     | Username | Password | Rôle |
                     |---|---|---|
                     | admin-vrp | Admin@VRP2024! | ADMIN |
-                    | dispatcher1 | Dispatcher@2024! | DISPATCHER |
                     | driver1 | Driver@2024! | DRIVER |
                     | client1 | Client@2024! | USER |
                     """)

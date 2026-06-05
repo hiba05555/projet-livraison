@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  * <p>Registration sequence:
  * <ol>
  *   <li>Validate uniqueness (email, username) in local DB</li>
- *   <li>Enforce role restriction (only ADMIN can grant ADMIN/DISPATCHER)</li>
+ *   <li>Enforce role restriction (only ADMIN can grant the ADMIN role)</li>
  *   <li>Create user in Keycloak via Admin API</li>
  *   <li>Assign realm role in Keycloak</li>
  *   <li>Create local {@link UserProfile} in PostgreSQL</li>
@@ -64,9 +64,9 @@ public class AuthService {
 
         // ── 2. Restrict sensitive role assignment ──────────────────────────
         // Self-service registration allows only USER and DRIVER.
-        // ADMIN and DISPATCHER must be assigned via the admin API.
+        // ADMIN must be assigned via the admin API.
         UserRole requestedRole = request.getRole();
-        if (requestedRole == UserRole.ADMIN || requestedRole == UserRole.DISPATCHER) {
+        if (requestedRole == UserRole.ADMIN) {
             log.warn("Attempt to self-register with role '{}' blocked. Defaulting to USER.", requestedRole);
             request.setRole(UserRole.USER);
         }

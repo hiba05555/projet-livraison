@@ -93,7 +93,7 @@ public class AdminController {
     @Operation(
         summary     = "Changer le rôle d'un utilisateur",
         description = "Retire l'ancien rôle et assigne le nouveau dans Keycloak + PostgreSQL. " +
-                      "Rôles disponibles : ADMIN, DISPATCHER, DRIVER, USER."
+                      "Rôles disponibles : ADMIN, DRIVER, USER."
     )
     @RequestBody(
         required = true,
@@ -107,15 +107,6 @@ public class AdminController {
                     value   = """
                         {
                           "role": "DRIVER"
-                        }
-                        """
-                ),
-                @ExampleObject(
-                    name    = "Promouvoir en DISPATCHER",
-                    summary = "Passer en DISPATCHER",
-                    value   = """
-                        {
-                          "role": "DISPATCHER"
                         }
                         """
                 ),

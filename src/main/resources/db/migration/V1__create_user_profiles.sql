@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS user_profiles (
     CONSTRAINT uq_user_profiles_keycloak_id UNIQUE (keycloak_user_id),
     CONSTRAINT uq_user_profiles_email       UNIQUE (email),
     CONSTRAINT uq_user_profiles_username    UNIQUE (username),
-    CONSTRAINT chk_user_profiles_role   CHECK (role   IN ('ADMIN','DISPATCHER','DRIVER','USER')),
+    CONSTRAINT chk_user_profiles_role   CHECK (role   IN ('ADMIN','DRIVER','USER')),
     CONSTRAINT chk_user_profiles_status CHECK (status IN ('ACTIVE','PENDING','INACTIVE','SUSPENDED'))
 );
 
